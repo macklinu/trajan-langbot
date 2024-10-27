@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "type": "module",
+  "prettier": "@macklinu/prettier-config",
+  "packageManager": "pnpm@9.12.2",
+  "license": "MIT",
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@macklinu/prettier-config": "^0.0.0",
+    "@tsconfig/node22": "^22.0.0",
+    "prettier": "^3.3.3",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}
