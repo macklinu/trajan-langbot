@@ -4,11 +4,13 @@
   "packageManager": "pnpm@9.12.2",
   "license": "MIT",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "lint": "oxlint"
   },
   "devDependencies": {
     "@macklinu/prettier-config": "^0.0.0",
     "@tsconfig/node22": "^22.0.0",
+    "oxlint": "^0.10.3",
     "prettier": "^3.3.3",
     "prettier-plugin-embed": "^0.4.15",
     "prettier-plugin-sql": "^0.18.1",

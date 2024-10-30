@@ -1,21 +1,6 @@
-import {
-  CacheType,
-  ChatInputCommandInteraction,
-  Client,
-  Events,
-  GatewayIntentBits,
-  Interaction,
-  SlashCommandBuilder,
-} from 'discord.js'
+import { Client, Events, GatewayIntentBits } from 'discord.js'
 import { z } from 'zod'
-import {
-  Result,
-  fromThrowable,
-  fromPromise,
-  err,
-  ResultAsync,
-  fromSafePromise,
-} from 'neverthrow'
+import { fromThrowable } from 'neverthrow'
 import { commands } from './commands/index.js'
 
 class UnknownError extends Error {
