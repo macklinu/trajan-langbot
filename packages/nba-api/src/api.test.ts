@@ -1,5 +1,5 @@
 import { expect, test, vi } from 'vitest'
-import { getSchedule, getGameBoxScore } from './api.js'
+import { getSchedule, getGameBoxScore, getTodaysScoreboard } from './api.js'
 import { z } from 'zod'
 
 test('can get schedule for current year', async () => {
@@ -26,4 +26,8 @@ test('getGameBoxScore returns an object', async () => {
   await expect(getGameBoxScore({ gameId: '0022400114' })).resolves.toEqual(
     expect.any(Object)
   )
+})
+
+test('getTodaysScoreboard returns object', async () => {
+  await expect(getTodaysScoreboard()).resolves.toEqual(expect.any(Object))
 })

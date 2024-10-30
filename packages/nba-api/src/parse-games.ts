@@ -83,6 +83,8 @@ const GameSchema = z
     },
   }))
 
+export type Game = z.infer<typeof GameSchema>
+
 const ScheduleSchema = z.object({
   lscd: z.array(
     z.object({

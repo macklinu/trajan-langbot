@@ -1,6 +1,6 @@
 import ky from 'ky'
 import { z } from 'zod'
-import { parseGames } from './parse-games.js'
+import { Game, parseGames } from './parse-games.js'
 
 const yearSchema = () =>
   z
@@ -9,7 +9,9 @@ const yearSchema = () =>
     .min(2020)
     .max(new Date().getFullYear() + 1)
 
-export const getSchedule = async (options: { year?: number }) => {
+export const getSchedule = async (options: {
+  year?: number
+}): Promise<Game[]> => {
   const optionsSchema = z.object({
     year: yearSchema().optional().default(new Date().getFullYear()),
   })
@@ -25,7 +27,9 @@ export const getSchedule = async (options: { year?: number }) => {
   return parseGames(json)
 }
 
-export const getGameBoxScore = async (options: { gameId: string }) => {
+export const getGameBoxScore = (options: {
+  gameId: string
+}): Promise<unknown> => {
   return ky
     .get(
       `https://stats.nba.com/stats/boxscoresummaryv3?GameID=${options.gameId}&LeagueID=00`,
@@ -34,6 +38,14 @@ export const getGameBoxScore = async (options: { gameId: string }) => {
           referer: 'https://www.nba.com/',
         },
       }
+    )
+    .json()
+}
+
+export const getTodaysScoreboard = (): Promise<unknown> => {
+  return ky
+    .get(
+      'https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json'
     )
     .json()
 }

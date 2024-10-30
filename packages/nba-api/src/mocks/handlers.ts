@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import schedule from './schedule-2024-2025.json'
 import boxScore from './box-score-summary-0022400114.json'
+import todaysScoreboard from './todays-scoreboard-2024-10-30.json'
 import { z } from 'zod'
 
 export const handlers = [
@@ -23,5 +24,9 @@ export const handlers = [
   ),
   http.get('https://stats.nba.com/stats/boxscoresummaryv3', () =>
     HttpResponse.json(boxScore)
+  ),
+  http.get(
+    'https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json',
+    () => HttpResponse.json(todaysScoreboard)
   ),
 ]
