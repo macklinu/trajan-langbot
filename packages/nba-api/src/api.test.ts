@@ -1,5 +1,5 @@
 import { expect, test, vi } from 'vitest'
-import { getSchedule } from './api.js'
+import { getSchedule, getGameBoxScore } from './api.js'
 import { z } from 'zod'
 
 test('can get schedule for current year', async () => {
@@ -19,5 +19,11 @@ test('cannot get schedule two or more years in advance', async () => {
 
   await expect(getSchedule({ year: 2026 })).rejects.toThrowError(
     expect.any(z.ZodError)
+  )
+})
+
+test('getGameBoxScore returns an object', async () => {
+  await expect(getGameBoxScore({ gameId: '0022400114' })).resolves.toEqual(
+    expect.any(Object)
   )
 })

@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw'
 import schedule from './schedule-2024-2025.json'
+import boxScore from './box-score-summary-0022400114.json'
 import { z } from 'zod'
 
 export const handlers = [
@@ -19,5 +20,8 @@ export const handlers = [
           return HttpResponse.json({ lscd: [] })
       }
     }
+  ),
+  http.get('https://stats.nba.com/stats/boxscoresummaryv3', () =>
+    HttpResponse.json(boxScore)
   ),
 ]

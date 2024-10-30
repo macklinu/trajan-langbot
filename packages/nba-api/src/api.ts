@@ -24,3 +24,16 @@ export const getSchedule = async (options: { year?: number }) => {
 
   return parseGames(json)
 }
+
+export const getGameBoxScore = async (options: { gameId: string }) => {
+  return ky
+    .get(
+      `https://stats.nba.com/stats/boxscoresummaryv3?GameID=${options.gameId}&LeagueID=00`,
+      {
+        headers: {
+          referer: 'https://www.nba.com/',
+        },
+      }
+    )
+    .json()
+}
