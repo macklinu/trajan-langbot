@@ -64,7 +64,7 @@ export const getTodaysScoreboard = () => {
                     wins: z.number(),
                     losses: z.number(),
                   }),
-                  visitorTeam: z.object({
+                  awayTeam: z.object({
                     teamId: z.number(),
                     teamName: z.string(),
                     teamTricode: z.string(),

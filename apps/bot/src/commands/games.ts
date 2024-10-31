@@ -31,7 +31,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
       const pistonsGame = scoreboard.games.find(
         (game) =>
           game.homeTeam.teamId === PISTONS_TEAM_ID ||
-          game.visitorTeam.teamId === PISTONS_TEAM_ID
+          game.awayTeam.teamId === PISTONS_TEAM_ID
       )
 
       if (!pistonsGame) {
@@ -39,7 +39,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
       } else {
         const opposingTeam =
           pistonsGame.homeTeam.teamId === PISTONS_TEAM_ID
-            ? pistonsGame.visitorTeam
+            ? pistonsGame.awayTeam
             : pistonsGame.homeTeam
 
         await interaction.reply(
