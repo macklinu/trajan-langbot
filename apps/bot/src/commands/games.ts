@@ -1,4 +1,6 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js'
+import { getTodaysScoreboard } from '@trajan/nba-api'
+import { PISTONS_TEAM_ID } from '../pistons.js'
 
 export const data = new SlashCommandBuilder()
   .setName('schedule')
@@ -25,6 +27,25 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
       break
     }
     case 'today': {
+      const { scoreboard } = await getTodaysScoreboard()
+      const pistonsGame = scoreboard.games.find(
+        (game) =>
+          game.homeTeam.teamId === PISTONS_TEAM_ID ||
+          game.visitorTeam.teamId === PISTONS_TEAM_ID
+      )
+
+      if (!pistonsGame) {
+        await interaction.reply('No Pistons game today')
+      } else {
+        const opposingTeam =
+          pistonsGame.homeTeam.teamId === PISTONS_TEAM_ID
+            ? pistonsGame.visitorTeam
+            : pistonsGame.homeTeam
+
+        await interaction.reply(
+          `The Pistons are playing the ${opposingTeam.teamName} today`
+        )
+      }
       break
     }
     case 'sync': {

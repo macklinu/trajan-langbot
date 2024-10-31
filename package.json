@@ -5,7 +5,10 @@
   "license": "MIT",
   "scripts": {
     "test": "vitest",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r --parallel build",
+    "type-check": "pnpm -r --parallel type-check"
   },
   "devDependencies": {
     "@macklinu/prettier-config": "^0.0.0",

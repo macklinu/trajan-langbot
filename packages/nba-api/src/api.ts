@@ -42,10 +42,40 @@ export const getGameBoxScore = (options: {
     .json()
 }
 
-export const getTodaysScoreboard = (): Promise<unknown> => {
+export const getTodaysScoreboard = () => {
   return ky
     .get(
       'https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json'
     )
     .json()
+    .then((data) =>
+      z
+        .object({
+          scoreboard: z.object({
+            gameDate: z.string(),
+            games: z.array(
+              z
+                .object({
+                  gameId: z.string(),
+                  homeTeam: z.object({
+                    teamId: z.number(),
+                    teamName: z.string(),
+                    teamTricode: z.string(),
+                    wins: z.number(),
+                    losses: z.number(),
+                  }),
+                  visitorTeam: z.object({
+                    teamId: z.number(),
+                    teamName: z.string(),
+                    teamTricode: z.string(),
+                    wins: z.number(),
+                    losses: z.number(),
+                  }),
+                })
+                .passthrough()
+            ),
+          }),
+        })
+        .parse(data)
+    )
 }
