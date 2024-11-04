@@ -1,6 +1,6 @@
-import { Sql } from 'postgres'
+import type { Sql } from 'postgres'
 import { z } from 'zod'
-import { createPostgres } from './create-postgres.js'
+import { createPostgres } from './create-postgres'
 
 const TeamSchema = z.object({
   createdAt: z.date(),

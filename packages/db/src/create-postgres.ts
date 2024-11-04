@@ -1,5 +1,5 @@
 import postgres from 'postgres'
-import { noop } from './noop.js'
+import { noop } from './noop'
 
 export const createPostgres = (connectionString: string): postgres.Sql =>
   postgres(connectionString, {

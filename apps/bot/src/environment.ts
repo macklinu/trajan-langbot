@@ -1,6 +1,6 @@
 import { fromThrowable } from 'neverthrow'
 import { z } from 'zod'
-import { UnknownError } from './errors.js'
+import { UnknownError } from './errors'
 
 const EnvironmentSchema = z.object({
   /** Discord bot token */

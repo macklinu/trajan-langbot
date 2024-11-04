@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest'
 import schedule from './mocks/schedule-2024-2025.json'
-import { GameStatus, parseGames } from './parse-games.js'
+import { GameStatus, parseGames } from './parse-games'
 
 test('can parse 2024-2025 schedule', () => {
   expect(parseGames(schedule)).toEqual(expect.any(Array))

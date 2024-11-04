@@ -1,7 +1,7 @@
 import { test, expect, beforeEach, inject, afterEach } from 'vitest'
-import { Database } from './index.js'
-import { Migrator } from './migrator.js'
-import { createPostgres } from './create-postgres.js'
+import { Database } from './index'
+import { Migrator } from './migrator'
+import { createPostgres } from './create-postgres'
 
 const database = () => new Database(inject('connectionString'))
 const postgres = () => createPostgres(inject('connectionString'))

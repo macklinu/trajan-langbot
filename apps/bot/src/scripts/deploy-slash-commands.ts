@@ -1,7 +1,7 @@
 import { REST, Routes } from 'discord.js'
-import { loadEnvironmentVariables } from '../environment.js'
-import { commandsJson } from '../commands/index.js'
-import { getLogger } from '../logger.js'
+import { loadEnvironmentVariables } from '../environment'
+import { commandsJson } from '../commands'
+import { getLogger } from '../logger'
 
 const logger = getLogger('deploy-slash-commands')
 

@@ -4,6 +4,7 @@ import { PostgreSqlContainer } from '@testcontainers/postgresql'
 
 export default async function setup({ provide }: GlobalSetupContext) {
   const consola = createConsola({
+    // @ts-expect-error
     fancy: true,
     formatOptions: {
       date: false,
