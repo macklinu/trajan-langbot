@@ -16,7 +16,7 @@ export default async function setup({ provide }: GlobalSetupContext) {
 
   const container = await new PostgreSqlContainer('postgres:17.0')
     .withUsername('postgres')
-    .withPassword(Bun.randomUUIDv7())
+    .withPassword('any-password')
     .withDatabase('test_db')
     .start()
 
