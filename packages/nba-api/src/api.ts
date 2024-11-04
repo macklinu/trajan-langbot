@@ -9,9 +9,11 @@ const yearSchema = () =>
     .min(2020)
     .max(new Date().getFullYear() + 1)
 
-export const getSchedule = async (options: {
-  year?: number
-}): Promise<Game[]> => {
+export const getSchedule = async (
+  options: {
+    year?: number
+  } = {}
+): Promise<Game[]> => {
   const optionsSchema = z.object({
     year: yearSchema().optional().default(new Date().getFullYear()),
   })

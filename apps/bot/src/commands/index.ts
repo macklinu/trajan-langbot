@@ -1,7 +1,9 @@
-import * as games from './games.js'
-import * as ping from './ping.js'
+import * as pistons from './pistons.js'
 
-export const commands = () => [games, ping]
+const commands = () => [pistons]
+
+export const buildCommandMap = () =>
+  new Map(commands().map((command) => [command.data.name, command]))
 
 export const commandsJson = () =>
   commands().map((command) => command.data.toJSON())

@@ -1,31 +1,14 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js'
-import { z } from 'zod'
-import { fromThrowable } from 'neverthrow'
-import { commands } from './commands/index.js'
+import { buildCommandMap } from './commands/index.js'
+import { loadEnvironmentVariables } from './environment.js'
+import { getLogger } from './logger.js'
 
-class UnknownError extends Error {
-  constructor(error: unknown) {
-    const cause = error instanceof Error ? error : undefined
-    const message = error instanceof Error ? error.message : 'Unknown'
-    super(message, { cause })
-    this.name = 'UnknownError'
-  }
-}
-
-const loadEnvironmentVariables = fromThrowable(
-  () =>
-    z
-      .object({
-        TOKEN: z.string().min(1),
-      })
-      .parse(process.env),
-  (e) => (e instanceof z.ZodError ? e : new UnknownError(e))
-)
+const logger = getLogger('bot')
 
 const initializeClient = (token: string) =>
   new Promise<Client<true>>((resolve, reject) => {
     const client = new Client({
-      intents: [GatewayIntentBits.Guilds],
+      intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
     })
 
     client.once(Events.ClientReady, resolve)
@@ -34,17 +17,16 @@ const initializeClient = (token: string) =>
     client.login(token)
   })
 
-const commandRegistry = new Map(
-  Object.values(commands).map((command) => [command.data.name, command])
-)
-
 const setupClient = (client: Client<true>) => {
+  const commandMap = buildCommandMap()
+
   client.on(Events.InteractionCreate, async (interaction) => {
+    logger.info({ interaction }, 'Interaction received')
     if (!interaction.isChatInputCommand()) {
       return
     }
 
-    const command = commandRegistry.get(interaction.commandName)
+    const command = commandMap.get(interaction.commandName)
     if (!command) {
       return
     }
@@ -59,6 +41,6 @@ loadEnvironmentVariables()
   .asyncMap((env) => initializeClient(env.TOKEN))
   .map((client) => setupClient(client))
   .match(
-    () => console.log('Client setup complete'),
-    (err) => console.error(err)
+    () => logger.info('Client setup complete'),
+    (err) => logger.error(err)
   )

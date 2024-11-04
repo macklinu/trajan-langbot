@@ -3,7 +3,7 @@ import { getTodaysScoreboard } from '@trajan/nba-api'
 import { PISTONS_TEAM_ID } from '../pistons.js'
 
 export const data = new SlashCommandBuilder()
-  .setName('schedule')
+  .setName('pistons')
   .setDescription('All things related to the Pistons schedule')
   .addSubcommand((subcommand) =>
     subcommand
