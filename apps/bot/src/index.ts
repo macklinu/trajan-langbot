@@ -1,7 +1,7 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js'
-import { buildCommandMap } from './commands/index.js'
-import { loadEnvironmentVariables } from './environment.js'
-import { getLogger } from './logger.js'
+import { buildCommandMap } from './commands'
+import { loadEnvironmentVariables } from './environment'
+import { getLogger } from './logger'
 
 const logger = getLogger('bot')
 

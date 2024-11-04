@@ -1,6 +1,6 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js'
 import { getTodaysScoreboard } from '@trajan/nba-api'
-import { PISTONS_TEAM_ID } from '../pistons.js'
+import { PISTONS_TEAM_ID } from '../pistons'
 
 export const data = new SlashCommandBuilder()
   .setName('pistons')

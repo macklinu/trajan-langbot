@@ -4,6 +4,7 @@ import { PostgreSqlContainer } from '@testcontainers/postgresql'
 
 export default async function setup({ provide }: GlobalSetupContext) {
   const consola = createConsola({
+    // @ts-expect-error
     fancy: true,
     formatOptions: {
       date: false,
@@ -15,7 +16,7 @@ export default async function setup({ provide }: GlobalSetupContext) {
 
   const container = await new PostgreSqlContainer('postgres:17.0')
     .withUsername('postgres')
-    .withPassword(crypto.randomUUID())
+    .withPassword('any-password')
     .withDatabase('test_db')
     .start()
 

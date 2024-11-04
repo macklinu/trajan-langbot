@@ -1,4 +1,4 @@
-import * as pistons from './pistons.js'
+import * as pistons from './pistons'
 
 const commands = () => [pistons]
 

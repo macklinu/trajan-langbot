@@ -1,5 +1,5 @@
 import { expect, test, vi } from 'vitest'
-import { getSchedule, getGameBoxScore, getTodaysScoreboard } from './api.js'
+import { getSchedule, getGameBoxScore, getTodaysScoreboard } from './api'
 import { z } from 'zod'
 
 test('can get schedule for current year', async () => {

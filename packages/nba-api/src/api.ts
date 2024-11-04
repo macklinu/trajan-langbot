@@ -1,6 +1,6 @@
 import ky from 'ky'
 import { z } from 'zod'
-import { Game, parseGames } from './parse-games.js'
+import { type Game, parseGames } from './parse-games'
 
 const yearSchema = () =>
   z

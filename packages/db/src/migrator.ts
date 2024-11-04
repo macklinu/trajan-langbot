@@ -1,5 +1,5 @@
-import { Sql } from 'postgres'
-import { createPostgres } from './create-postgres.js'
+import { type Sql } from 'postgres'
+import { createPostgres } from './create-postgres'
 
 const createTeamsTable = (sql: Sql) => sql`
   CREATE TABLE IF NOT EXISTS teams (
